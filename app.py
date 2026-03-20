@@ -71,17 +71,17 @@ if st.button('Predict Score'):
         rrr = runs_left / (balls_left / 6)
 
         input_df = pd.DataFrame({
-            'batting_team':[batting_team],
-            'bowling_team':[bowling_team],
-            'city':[city],
-            'runs_left':[runs_left],
-            'balls_left':[balls_left],
-            'wickets_left':[wickets_left],
-            'total_runs':[current_score],
-            'crr':[crr],
-            'rrr':[rrr],
-            'last_five':[last_five] 
-        })
+    'batting_team':[batting_team],
+    'bowling_team':[bowling_team],
+    'city':[city],
+    'runs_left':[runs_left],
+    'balls_left':[balls_left],
+    'wickets_left':[wickets_left],
+    'total_runs':[current_score],   # ✅ FIX NAME
+    'crr':[crr],
+    'rrr':[rrr],
+    'last_five':[last_five]         # ✅ ADD
+})
 
         result = pipe.predict(input_df)
 
