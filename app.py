@@ -79,7 +79,8 @@ if st.button('Predict Score'):
             'wickets_left':[wickets_left],
             'total_runs_x':[current_score],
             'crr':[crr],
-            'rrr':[rrr]
+            'rrr':[rrr],
+            'last_five':[last_five] 
         })
 
         result = pipe.predict(input_df)
