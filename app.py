@@ -5,17 +5,17 @@ import numpy as np
 import gdown
 import os
 
-# ---------------- DOWNLOAD MODEL ----------------
+
 file_id = "1V5KvUPqU03ellevso7iYoVml-1bUbdBc"
 
 if not os.path.exists("pipe.pkl"):
     url = f"https://drive.google.com/uc?id={file_id}"
     gdown.download(url, "pipe.pkl", quiet=False)
 
-# ---------------- LOAD MODEL ----------------
+
 pipe = pickle.load(open("pipe.pkl","rb"))
 
-# ---------------- DATA ----------------
+
 teams = ['Australia','India','Bangladesh','New Zealand','South Africa',
          'England','West Indies','Afghanistan','Pakistan','Sri Lanka']
 
