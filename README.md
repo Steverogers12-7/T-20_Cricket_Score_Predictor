@@ -1,4 +1,4 @@
-T20 Cricket Score Predictor
+
 This project is based on machine learning,used for prediction of score of first innings of the t-20 international men cricket matches.
 Dataset used for this model= Cricksheet [kaggle].
 
@@ -50,6 +50,6 @@ All Data Extraction,preprocessing,feature extraction,model training & testing al
 - Better UI design
 
 
-Ashutosh Kumar
+Ashutosh Kumar.
 Machine Learning Project – T20 Cricket Score Prediction
 
