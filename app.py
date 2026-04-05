@@ -24,6 +24,37 @@ def set_bg_gif():
     """, unsafe_allow_html=True)
 
 set_bg_gif()
+st.markdown("""
+<style>
+/* Main app background transparent */
+[data-testid="stAppViewContainer"] {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* Sidebar transparent */
+[data-testid="stSidebar"] {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Widgets transparent */
+.stNumberInput, .stSelectbox, .stButton {
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+/* Title color */
+h1 {
+    color: white;
+    text-align: center;
+}
+
+/* Text color */
+label, .stMarkdown {
+    color: white;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # Download model from Google Drive
 file_id = "15N4KPQc7Job-26w3fKxVfqHCK5y_Pq0w"
