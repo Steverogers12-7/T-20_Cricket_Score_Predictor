@@ -78,6 +78,12 @@ if st.button('Predict Score'):
         else:
             phase = "Death"
 
+        # Progress
+        progress = overs / 20
+
+        # Runs Possible
+        runs_possible = (balls_left/6) * crr
+
         input_df = pd.DataFrame({
             'batting_team':[batting_team],
             'bowling_team':[bowling_team],
@@ -89,13 +95,14 @@ if st.button('Predict Score'):
             'last_five':[last_five],
             'aggression':[aggression],
             'pressure':[pressure],
-            'phase':[phase]
+            'phase':[phase],
+            'progress':[progress],
+            'runs_possible':[runs_possible]
         })
 
         result = pipe.predict(input_df)
         predicted_score = int(result[0])
 
-        # Range
         lower = predicted_score - 10
         upper = predicted_score + 10
 
