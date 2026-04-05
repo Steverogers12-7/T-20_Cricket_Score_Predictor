@@ -30,17 +30,17 @@ cities = ['Colombo','Mirpur','Johannesburg','Dubai','Auckland','Cape Town',
           'Cardiff','Christchurch','Trinidad']
 
 # 1. Sidebar for Match Setup
-st.sidebar.title('⚙️ Match Setup')
+st.sidebar.title(' Match Setup')
 batting_team = st.sidebar.selectbox('Batting Team', sorted(teams))
 bowling_team = st.sidebar.selectbox('Bowling Team', sorted(teams))
 city = st.sidebar.selectbox('Match City', sorted(cities))
 
-st.title('🏏 Cricket Score Predictor')
+st.title('T-20 Cricket Score Predictor')
 
 if batting_team == bowling_team:
     st.error("Batting and Bowling team must be different!")
 else:
-    st.subheader("📊 Match Situation")
+    st.subheader(" Match Situation")
     col1, col2 = st.columns(2)
 
     # Sliders hata kar wapas number_input laga diya, integers set karne ke liye step=1 rakha hai
@@ -114,11 +114,9 @@ else:
 
     # Output via Metrics
     st.markdown("---")
-    st.subheader("🎯 Prediction Results")
+    st.subheader("Prediction Results")
     
-    col_res1, col_res2, col_res3 = st.columns(3)
-    with col_res1:
-        st.metric(label="Current Run Rate", value=f"{crr:.2f}")
+    col_res2, col_res3 = st.columns(2)
     with col_res2:
         st.metric(label="Predicted Score", value=predicted_score)
     with col_res3:
