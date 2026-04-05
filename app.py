@@ -5,6 +5,26 @@ import numpy as np
 import gdown
 import os
 
+import base64
+
+def set_bg_gif():
+    with open("cricket.gif", "rb") as f:
+        data = f.read()
+    encoded = base64.b64encode(data).decode()
+    
+    st.markdown(f"""
+    <style>
+    .stApp {{
+        background-image: url("data:image/gif;base64,{encoded}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }}
+    </style>
+    """, unsafe_allow_html=True)
+
+set_bg_gif()
+
 # Download model from Google Drive
 file_id = "15N4KPQc7Job-26w3fKxVfqHCK5y_Pq0w"
 
