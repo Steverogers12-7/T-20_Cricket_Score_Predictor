@@ -7,23 +7,7 @@ import os
 import base64
 import plotly.express as px
 
-def set_bg():
-    if os.path.exists("Gemini_Generated_Image_aoeei9aoeei9aoee.png"):
-        with open("Gemini_Generated_Image_aoeei9aoeei9aoee.png", "rb") as f:
-            data = f.read()
-        encoded = base64.b64encode(data).decode()
-        
-        st.markdown(f"""
-        <style>
-        .stApp {{
-            background-image: url("data:image/jpg;base64,{encoded}");
-            background-size: cover;
-            background-attachment: fixed;
-        }}
-        </style>
-        """, unsafe_allow_html=True)
 
-set_bg()
 
 # Download model from Google Drive
 file_id = "15N4KPQc7Job-26w3fKxVfqHCK5y_Pq0w"
