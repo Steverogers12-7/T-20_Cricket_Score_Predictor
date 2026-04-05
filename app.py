@@ -46,7 +46,7 @@ else:
 
     with col1:
         current_score = st.slider('Current Score', min_value=0, max_value=350, value=50)
-        overs = st.slider('Overs Done (works for over>5)', min_value=5.0, max_value=19.5, step=0.1, value=5.0)
+        overs = st.slider('Overs Done (works for over>5)', min_value=5, max_value=19, value=5)
     with col2:
         wickets = st.slider('Wickets Out', min_value=0, max_value=10, value=0)
         last_five = st.slider('Runs in Last 5 Overs', min_value=0, max_value=100, value=30)
