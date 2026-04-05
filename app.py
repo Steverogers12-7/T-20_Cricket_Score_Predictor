@@ -72,11 +72,11 @@ if st.button('Predict Score'):
 
         # Phase
         if overs <= 6:
-            phase = "Powerplay"
+            phase = "powerplay"
         elif overs <= 15:
-            phase = "Middle"
+            phase = "middle"
         else:
-            phase = "Death"
+            phase = "death"
 
         # Progress
         progress = overs / 20
