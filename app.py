@@ -5,16 +5,14 @@ import numpy as np
 import gdown
 import os
 
-
-file_id = "1V5KvUPqU03ellevso7iYoVml-1bUbdBc"
+# Download model from Google Drive
+file_id = "15N4KPQc7Job-26w3fKxVfqHCK5y_Pq0w"
 
 if not os.path.exists("pipe.pkl"):
     url = f"https://drive.google.com/uc?id={file_id}"
     gdown.download(url, "pipe.pkl", quiet=False)
 
-
 pipe = pickle.load(open("pipe.pkl","rb"))
-
 
 teams = ['Australia','India','Bangladesh','New Zealand','South Africa',
          'England','West Indies','Afghanistan','Pakistan','Sri Lanka']
@@ -26,6 +24,7 @@ cities = ['Colombo','Mirpur','Johannesburg','Dubai','Auckland','Cape Town',
           'Mount Maunganui','Chittagong','Kolkata','Lahore','Delhi',
           'Nagpur','Chandigarh','Adelaide','Bangalore','St Kitts',
           'Cardiff','Christchurch','Trinidad']
+
 st.title('🏏 Cricket Score Predictor')
 
 col1, col2 = st.columns(2)
@@ -57,8 +56,27 @@ if st.button('Predict Score'):
         balls_left = 120 - (overs * 6)
         wickets_left = 10 - wickets
 
-        crr = current_score / overs
-        
+        if overs == 0:
+            crr = 0
+        else:
+            crr = current_score / overs
+
+        # Aggression
+        aggression = crr * wickets_left
+
+        # Pressure
+        if balls_left == 0:
+            pressure = 0
+        else:
+            pressure = wickets_left / balls_left
+
+        # Phase
+        if overs <= 6:
+            phase = "Powerplay"
+        elif overs <= 15:
+            phase = "Middle"
+        else:
+            phase = "Death"
 
         input_df = pd.DataFrame({
             'batting_team':[batting_team],
@@ -66,12 +84,20 @@ if st.button('Predict Score'):
             'city':[city],
             'current_score':[current_score],
             'balls_left':[balls_left],
-            'wickets_left':[wickets],
+            'wickets_left':[wickets_left],
             'crr':[crr],
-            'last_five':[last_five]
+            'last_five':[last_five],
+            'aggression':[aggression],
+            'pressure':[pressure],
+            'phase':[phase]
         })
 
         result = pipe.predict(input_df)
+        predicted_score = int(result[0])
 
-        st.success(f"Predicted Score: {int(result[0])}")
+        # Range
+        lower = predicted_score - 10
+        upper = predicted_score + 10
 
+        st.success(f"Predicted Score: {predicted_score}")
+        st.info(f"Expected Score Range: {lower} - {upper}")
