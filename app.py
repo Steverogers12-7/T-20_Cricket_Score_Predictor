@@ -5,9 +5,25 @@ import numpy as np
 import gdown
 import os
 import base64
-import plotly.express as px  # <-- Yeh naya import hai graphs ke liye
+import plotly.express as px
 
+def set_bg():
+    if os.path.exists("Gemini_Generated_Image_aoeei9aoeei9aoee.png"):
+        with open("Gemini_Generated_Image_aoeei9aoeei9aoee.png", "rb") as f:
+            data = f.read()
+        encoded = base64.b64encode(data).decode()
+        
+        st.markdown(f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpg;base64,{encoded}");
+            background-size: cover;
+            background-attachment: fixed;
+        }}
+        </style>
+        """, unsafe_allow_html=True)
 
+set_bg()
 
 # Download model from Google Drive
 file_id = "15N4KPQc7Job-26w3fKxVfqHCK5y_Pq0w"
@@ -40,18 +56,18 @@ st.title('🏏 Cricket Score Predictor')
 if batting_team == bowling_team:
     st.error("Batting and Bowling team must be different!")
 else:
-    # 2. Main Screen inputs changed to Sliders
     st.subheader("📊 Match Situation")
     col1, col2 = st.columns(2)
 
+    # Sliders hata kar wapas number_input laga diya, integers set karne ke liye step=1 rakha hai
     with col1:
-        current_score = st.slider('Current Score', min_value=0, max_value=350, value=50)
-        overs = st.slider('Overs Done (works for over>5)', min_value=5, max_value=19, value=5)
+        current_score = st.number_input('Current Score', min_value=0, max_value=350, value=50, step=1)
+        overs = st.number_input('Overs Done (works for over>5)', min_value=5, max_value=19, value=5, step=1)
     with col2:
-        wickets = st.slider('Wickets Out', min_value=0, max_value=10, value=0)
-        last_five = st.slider('Runs in Last 5 Overs', min_value=0, max_value=100, value=30)
+        wickets = st.number_input('Wickets Out', min_value=0, max_value=10, value=0, step=1)
+        last_five = st.number_input('Runs in Last 5 Overs', min_value=0, max_value=100, value=30, step=1)
 
-    # 3. Core Logic (Unchanged from your base code)
+    # Core Logic
     balls_left = 120 - (overs * 6)
     wickets_left = 10 - wickets
 
@@ -83,9 +99,8 @@ else:
     # Runs Possible
     runs_possible = (balls_left/6) * crr
 
-    # 4. Progress Bar Added
+    # Progress Bar
     st.write(f"**Innings Progress** ({phase.capitalize()} Phase)")
-    # Ensuring progress bar doesn't exceed 100%
     progress_percentage = min(int((overs/20)*100), 100)
     st.progress(progress_percentage)
 
@@ -113,7 +128,7 @@ else:
     lower = predicted_score - 10
     upper = predicted_score + 10
 
-    # 5. Output shown using st.metric instead of normal text
+    # Output via Metrics
     st.markdown("---")
     st.subheader("🎯 Prediction Results")
     
@@ -125,7 +140,7 @@ else:
     with col_res3:
         st.metric(label="Expected Range", value=f"{lower} - {upper}")
 
-    # 6. Bar Chart Visualization Added
+    # Bar Chart Visualization
     chart_data = pd.DataFrame({
         'Stage': ['Current Score', 'Projected Score'],
         'Runs': [current_score, predicted_score]
