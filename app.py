@@ -5,56 +5,26 @@ import numpy as np
 import gdown
 import os
 
+
 import base64
 
-def set_bg_gif():
-    with open("cricket.gif", "rb") as f:
+def set_bg():
+    with open("Gemini_Generated_Image_aoeei9aoeei9aoee.png", "rb") as f:
         data = f.read()
     encoded = base64.b64encode(data).decode()
     
     st.markdown(f"""
     <style>
     .stApp {{
-        background-image: url("data:image/gif;base64,{encoded}");
+        background-image: url("data:image/jpg;base64,{encoded}");
         background-size: cover;
-        background-position: center;
         background-attachment: fixed;
     }}
     </style>
     """, unsafe_allow_html=True)
 
-set_bg_gif()
-st.markdown("""
-<style>
-/* Main app background transparent */
-[data-testid="stAppViewContainer"] {
-    background-color: rgba(0, 0, 0, 0);
-}
+set_bg()
 
-/* Sidebar transparent */
-[data-testid="stSidebar"] {
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-/* Widgets transparent */
-.stNumberInput, .stSelectbox, .stButton {
-    background-color: rgba(255,255,255,0.6);
-    border-radius: 10px;
-    padding: 5px;
-}
-
-/* Title color */
-h1 {
-    color: white;
-    text-align: center;
-}
-
-/* Text color */
-label, .stMarkdown {
-    color: white;
-}
-</style>
-""", unsafe_allow_html=True)
 
 # Download model from Google Drive
 file_id = "15N4KPQc7Job-26w3fKxVfqHCK5y_Pq0w"
