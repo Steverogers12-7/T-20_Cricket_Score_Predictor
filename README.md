@@ -1,5 +1,5 @@
 ## This project is based on machine learning,used for prediction of score of first innings of the t-20 international men cricket matches.  
-## Dataset used for the model= Cricksheet [kaggle].
+Dataset used for the model= Cricksheet [kaggle].
 
 
 ## Live App
