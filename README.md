@@ -46,8 +46,8 @@ some latest match prediction screenshots are given below:-
 <div align="center">
   <table>
     <tr>
-      <th width="50%">📥 Input (Match Setup)</th>
-      <th width="50%">📈 Output (Prediction Result)</th>
+      <th width="50%"></th>
+      <th width="50%"></th>
     </tr>
     <tr>
       <td><img src="https://github.com/user-attachments/assets/b597ace4-99f1-4522-8ea7-052931edce63" width="100%"></td>
@@ -66,8 +66,8 @@ some latest match prediction screenshots are given below:-
 <div align="center">
   <table>
     <tr>
-      <th width="50%">📥 Input (Match Setup)</th>
-      <th width="50%">📈 Output (Prediction Result)</th>
+      <th width="50%"></th>
+      <th width="50%"></th>
     </tr>
     <tr>
       <td><img src="https://github.com/user-attachments/assets/a5f7dad5-151d-463c-84a5-a0a1978afdc7" width="100%"></td>
@@ -76,8 +76,9 @@ some latest match prediction screenshots are given below:-
   </table>
 </div>
 
-Match Result images are collected from Google.
+Match Result images are collected from Google.  
 Model Prediction images are collected from live model deployed on streamlit.
+
 
 
 
