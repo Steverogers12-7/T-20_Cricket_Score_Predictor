@@ -14,8 +14,9 @@ https://t20scorepredictor-ekiorjgngkmcdvpencdzfi.streamlit.app/
 6. Model Evaluation
 7. Model Deployment using Streamlit
 
-Conversion from the present form into required form from dataset and then applied feature engineering to make it well for algorithm.
-Used Xgboost Algorithm for training this model.
+Conversion from the present form into required form from dataset and then applied feature engineering to make it well for algorithm.Added new features
+useful for model generalization.  
+Used Regressor class of XGBoost Algorithm for training the model.  
 
 Input features are:-
 - Batting Team
@@ -26,12 +27,17 @@ Input features are:-
 - Wickets Fallen
 - Runs in Last 5 Overs
 
-Model calculates Runs Left,Balls Left,Wickets Left,Current Run Rate (CRR),Required Run Rate (RRR).
-All matches data that are used in the training of algorithm is restricted to international t-20 matches and were played by men.
-All cities are not included ,those cities where atleast 5 matches were played are included.
-There are many teams but included only those who play frequently.
+Model calculates Runs Left,Balls Left,Wickets Left,Current Run Rate (CRR),Required Run Rate (RRR),phase,progress,aggression,runs_possible
+from input taken from user.All matches data that are used in the training of algorithm is restricted to international t-20 matches 
+and were played by men.All cities are not included ,those cities where atleast 5 matches were played are included.There are many teams 
+but included only those who play frequently.  
 
-I tried randomforest for training but it not generalises the model better(underfitting) so, used boosting technique of ensemble learning.
+There are some features that enhanced model's understanding as for wickets in match impact on model prediction "phase" as match starts
+there are 6 overs for powerplay,7-15 middle and 16-20 overs are death overs.since this model is for first innings so there is only target setting
+for team so phase becomes important as in death overs players are tend to score more than predicted and this dynamic as many factors combine to 
+do so.others features added are-progress,aggression and runs_possible(from crr*).
+
+I tried randomforest for training but it not generalizes the model better(underfitting) so, used boosting technique of ensemble learning.
 eXtreme Gradient Boosting(xgboost) which sequentially corrects the errors of models.It genralise(learn patterns) from data and performed well and not 
 overfitting as i verified with cross validation and intact the results in model training and testing notebook.
 some latest match prediction screenshots are given below:-
