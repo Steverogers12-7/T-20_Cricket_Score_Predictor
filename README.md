@@ -52,8 +52,9 @@ The modeling process involved iterative testing of different algorithms:
 
 ##  Model Predictions & Results
 
-### 🔹 Case Study 01
+### 01
 <p align="center">
+   <h2>Model Prediction</h2>
   <img src="https://github.com/user-attachments/assets/4b6a7e21-dfee-41fc-9c43-624445177a9a" width="100%" alt="Full Model UI" />
 </p>
 
@@ -64,6 +65,7 @@ The modeling process involved iterative testing of different algorithms:
       <th width="50%"></th>
     </tr>
     <tr>
+       <h2>Match Results</h2>
       <td><img src="https://github.com/user-attachments/assets/b597ace4-99f1-4522-8ea7-052931edce63" width="100%"></td>
       <td><img src="https://github.com/user-attachments/assets/0af84fbd-2303-4c00-88b5-2d88e927aaa4" width="100%"></td>
     </tr>
@@ -72,8 +74,9 @@ The modeling process involved iterative testing of different algorithms:
 
 ---
 
-### 🔹 Case Study 02
+### 02
 <p align="center">
+   <h2>Model Prediction</h2>
   <img src="https://github.com/user-attachments/assets/f8f595e6-6d01-4ca1-b0ff-948c9ab10db5" width="100%" alt="Full Model UI 2" />
 </p>
 
@@ -84,6 +87,7 @@ The modeling process involved iterative testing of different algorithms:
       <th width="50%"></th>
     </tr>
     <tr>
+       <h2>Model Results</h2>
       <td><img src="https://github.com/user-attachments/assets/a5f7dad5-151d-463c-84a5-a0a1978afdc7" width="100%"></td>
       <td><img src="https://github.com/user-attachments/assets/66544bb2-9e34-46b3-bcd4-bf92e31c5694" width="100%"></td>
     </tr>
@@ -106,13 +110,17 @@ All Data Extraction,preprocessing,feature extraction,model training & testing al
 - GitHub
 - Google Drive (for model storage)
 
-## 📈 Future Improvements
+## Future Improvements  
 - Match winner prediction
 - Win probability
-- Player performance prediction
-- Better UI design
+- Team performance prediction
+- Update model with latest t-20 internatinals matches data.
+- Include all vanues,city where matches are played.
+
+## Author
+Ashutosh Kumar(2024UCM2304)  
+4th semester(Mathematics and Computing)  
+Netaji Subhas University of Technology(NSUT)
 
 
-Ashutosh Kumar.
-Machine Learning Project – T20 Cricket Score Prediction
 
