@@ -6,60 +6,53 @@ import gdown
 import os
 import plotly.express as px
 
-# --- 1. Page Config & Custom CSS ---
-st.set_page_config(page_title="T-20 Score Predictor", layout="centered")
 
-# Professional CSS for Styling
+st.set_page_config(page_title="T-20 Predictor", layout="centered", page_icon="")
+
 st.markdown("""
     <style>
-    /* Main Background and Font */
-    .main {
-        background-color: #f8f9fa;
-    }
-    
-    /* Title Styling */
+    /* Bigger & Bolder Title */
     .main-title {
-        font-size: 36px;
-        font-weight: 800;
+        font-size: 48px; /* Bigger font */
+        font-weight: 900;
         color: #1E1E1E;
         text-align: center;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #ff4b4b;
-        padding-bottom: 10px;
+        margin-bottom: 30px;
+        line-height: 1.2;
     }
     
-    /* Card-like look for sections */
-    div.stExpander {
-        border: none !important;
-        box-shadow: 0px 4px 15px rgba(0,0,0,0.05);
+    /* Dark/Black Background for Expander Header */
+    .stExpander {
+        border: 1px solid #000000 !important;
         border-radius: 12px !important;
-        background-color: white !important;
     }
     
-    /* Metrics Styling */
+    /* Targetting the expander text to match 'Live Match Situation' font style */
+    .streamlit-expanderHeader {
+        background-color: #000000 !important;
+        color: white !important;
+        border-radius: 10px 10px 0 0 !important;
+        font-size: 1.2rem !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Metric Card Styling */
     div[data-testid="stMetric"] {
         background-color: #ffffff;
         border: 1px solid #e0e0e0;
         padding: 15px;
         border-radius: 12px;
-        box-shadow: 0px 2px 10px rgba(0,0,0,0.03);
-        text-align: center;
+        box-shadow: 0px 2px 10px rgba(0,0,0,0.05);
     }
     
-    /* Button / Selectbox improvements */
-    .stSelectbox label, .stNumberInput label {
-        font-weight: 600 !important;
-        color: #4F4F4F !important;
-    }
-    
-    /* Progress Bar Color */
-    .stProgress > div > div > div > div {
-        background-color: #ff4b4b;
+    /* Error/Warning box styling */
+    .stAlert {
+        border-radius: 10px;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# --- 2. Data & Model Loading ---
+
 file_id = "15N4KPQc7Job-26w3fKxVfqHCK5y_Pq0w"
 if not os.path.exists("pipe.pkl"):
     url = f"https://drive.google.com/uc?id={file_id}"
@@ -78,38 +71,40 @@ cities = ['Colombo','Mirpur','Johannesburg','Dubai','Auckland','Cape Town',
           'Nagpur','Chandigarh','Adelaide','Bangalore','St Kitts',
           'Cardiff','Christchurch','Trinidad']
 
-# --- 3. UI Layout ---
-st.markdown('<p class="main-title">T-20 Match Score Predictor</p>', unsafe_allow_html=True)
 
-# Match Setup Section
-with st.expander(" STEP 1: CONFIGURE MATCH SETUP", expanded=True):
+
+
+st.markdown('<p class="main-title">T-20 Cricket Match Score Predictor</p>', unsafe_allow_html=True)
+
+
+with st.expander("CONFIGURE MATCH SETUP", expanded=True):
     col_a, col_b = st.columns(2)
     with col_a:
-        batting_team = st.selectbox('Select Batting Team', sorted(teams), index=1) # India default
+        batting_team = st.selectbox('Select Batting Team', sorted(teams), index=1)
     with col_b:
-        bowling_team = st.selectbox('Select Bowling Team', sorted(teams), index=0) # Australia default
+        bowling_team = st.selectbox('Select Bowling Team', sorted(teams), index=0)
     
     city = st.selectbox('Select Venue (City)', sorted(cities), index=cities.index('Mumbai') if 'Mumbai' in cities else 0)
 
-if batting_team == bowling_team:
-    st.warning(" **Wait!** Batting and Bowling teams cannot be the same. Please select different teams.")
-else:
-    # Match Situation Section
-    st.markdown("### STEP 2: LIVE MATCH SITUATION")
-    
-    # Custom Container for Inputs
-    with st.container():
-        c1, c2, c3, c4 = st.columns(4)
-        with c1:
-            current_score = st.number_input('Score', min_value=0, value=50)
-        with c2:
-            overs = st.number_input('Overs', min_value=5.0, max_value=19.5, value=10.0, step=0.1)
-        with c3:
-            wickets = st.number_input('Wickets', min_value=0, max_value=9, value=2)
-        with c4:
-            last_five = st.number_input('Last 5v', min_value=0, value=35)
+st.markdown("---")
 
-    # Calculation Logic
+if batting_team == bowling_team:
+    st.error("**Teams must be different!** Please select two different teams to proceed.")
+else:
+    st.subheader(" Live Match Situation")
+    
+    s
+    c1, c2 = st.columns(2)
+    with c1:
+        current_score = st.number_input('Current Score', min_value=0, value=50, step=1)
+        
+        overs = st.number_input('Overs Done (Must be > 5)', min_value=5.0, max_value=19.5, value=10.0, step=0.1, help="The model requires at least 5 overs of data to predict.")
+    with c2:
+        wickets = st.number_input('Wickets Out', min_value=0, max_value=9, value=2, step=1)
+       t
+        last_five = st.number_input('Last 5 Over Runs', min_value=0, value=35, step=1)
+
+   
     balls_left = 120 - (int(overs) * 6 + int((overs % 1) * 10))
     wickets_left = 10 - wickets
     crr = current_score / overs if overs > 0 else 0
@@ -119,11 +114,11 @@ else:
     progress = overs / 20
     runs_possible = (balls_left/6) * crr
 
-    # Progress Indicator
-    st.write(f"**Innings Progress:** {phase.upper()} PHASE")
+ 
+    st.write(f"**Innings Progress:** {phase.upper()} Phase")
     st.progress(min(progress, 1.0))
 
-    # Prediction Logic
+  
     input_df = pd.DataFrame({
         'batting_team':[batting_team], 'bowling_team':[bowling_team], 'city':[city],
         'current_score':[current_score], 'balls_left':[balls_left], 'wickets_left':[wickets_left],
@@ -133,36 +128,25 @@ else:
 
     result = pipe.predict(input_df)
     predicted_score = int(result[0])
-    
-    # Prediction Display
-    st.markdown("---")
-    st.markdown("### STEP 3: PREDICTION OUTPUT")
-    
-    out1, out2 = st.columns(2)
-    with out1:
-        st.metric(label="PROJECTED TOTAL", value=predicted_score)
-    with out2:
-        st.metric(label="EXPECTED RANGE", value=f"{predicted_score-10} - {predicted_score+10}")
 
-    # Visualization
+   
+    st.markdown("---")
+    st.subheader(" Prediction Results")
+    
+    res1, res2 = st.columns(2)
+    res1.metric("Predicted Total Score", predicted_score)
+    res2.metric("Expected Score Range", f"{predicted_score-10} - {predicted_score+10}")
+
+    
     fig = px.bar(
         x=['Current Score', 'Predicted Total'], 
         y=[current_score, predicted_score],
         color=['Current', 'Predicted'],
-        color_discrete_map={'Current': '#E1E1E1', 'Predicted': '#ff4b4b'},
+        color_discrete_map={'Current': '#D3D3D3', 'Predicted': '#1E1E1E'},
         text=[current_score, predicted_score]
     )
-    fig.update_layout(
-        showlegend=False, 
-        height=300, 
-        margin=dict(t=10, b=0, l=0, r=0),
-        plot_bgcolor='rgba(0,0,0,0)',
-        paper_bgcolor='rgba(0,0,0,0)'
-    )
+    fig.update_layout(showlegend=False, height=350, plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
     st.plotly_chart(fig, use_container_width=True)
 
-st.markdown("""
-    <div style='text-align: center; color: #888; font-size: 12px; margin-top: 50px;'>
-        Developed by Ashutosh Kumar(2024UCM2304) | NSUT
-    </div>
-    """, unsafe_allow_html=True)
+
+st.markdown("<br><hr><center><small>Developed by Ashutosh Kumar(2024UCM2304) | NSUT</small></center>", unsafe_allow_html=True)
