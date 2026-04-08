@@ -7,7 +7,7 @@ import os
 import plotly.express as px
 
 # --- 1. Page Config & Custom CSS ---
-st.set_page_config(page_title="T-20 Score Predictor", layout="centered", page_icon="🏏")
+st.set_page_config(page_title="T-20 Score Predictor", layout="centered")
 
 # Professional CSS for Styling
 st.markdown("""
@@ -79,10 +79,10 @@ cities = ['Colombo','Mirpur','Johannesburg','Dubai','Auckland','Cape Town',
           'Cardiff','Christchurch','Trinidad']
 
 # --- 3. UI Layout ---
-st.markdown('<p class="main-title">🏏 T-20 Match Score Predictor</p>', unsafe_allow_html=True)
+st.markdown('<p class="main-title">T-20 Match Score Predictor</p>', unsafe_allow_html=True)
 
 # Match Setup Section
-with st.expander("🛠️ STEP 1: CONFIGURE MATCH SETUP", expanded=True):
+with st.expander(" STEP 1: CONFIGURE MATCH SETUP", expanded=True):
     col_a, col_b = st.columns(2)
     with col_a:
         batting_team = st.selectbox('Select Batting Team', sorted(teams), index=1) # India default
@@ -92,10 +92,10 @@ with st.expander("🛠️ STEP 1: CONFIGURE MATCH SETUP", expanded=True):
     city = st.selectbox('Select Venue (City)', sorted(cities), index=cities.index('Mumbai') if 'Mumbai' in cities else 0)
 
 if batting_team == bowling_team:
-    st.warning("⚠️ **Wait!** Batting and Bowling teams cannot be the same. Please select different teams.")
+    st.warning(" **Wait!** Batting and Bowling teams cannot be the same. Please select different teams.")
 else:
     # Match Situation Section
-    st.markdown("### 📊 STEP 2: LIVE MATCH SITUATION")
+    st.markdown("### STEP 2: LIVE MATCH SITUATION")
     
     # Custom Container for Inputs
     with st.container():
@@ -136,7 +136,7 @@ else:
     
     # Prediction Display
     st.markdown("---")
-    st.markdown("### 🎯 STEP 3: PREDICTION OUTPUT")
+    st.markdown("### STEP 3: PREDICTION OUTPUT")
     
     out1, out2 = st.columns(2)
     with out1:
@@ -163,6 +163,6 @@ else:
 
 st.markdown("""
     <div style='text-align: center; color: #888; font-size: 12px; margin-top: 50px;'>
-        Developed by Ashutosh Kumar | NSUT Undergraduate
+        Developed by Ashutosh Kumar(2024UCM2304) | NSUT
     </div>
     """, unsafe_allow_html=True)
