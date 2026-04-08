@@ -36,15 +36,45 @@ eXtreme Gradient Boosting(xgboost) which sequentially corrects the errors of mod
 overfitting as i verified with cross validation and intact the results in model training and testing notebook.
 some latest match prediction screenshots are given below:-
 
-Model prediction:-
-<img width="1577" height="777" alt="Screenshot 2026-04-08 202818" src="https://github.com/user-attachments/assets/4b6a7e21-dfee-41fc-9c43-624445177a9a" />
-Match Result:-
-<img src="https://github.com/user-attachments/assets/b597ace4-99f1-4522-8ea7-052931edce63" width="48%" /><img src="https://github.com/user-attachments/assets/0af84fbd-2303-4c00-88b5-2d88e927aaa4" width="48%" />
+##  Model Predictions & Results
 
-Model prediction:-
-<img width="1610" height="775" alt="Screenshot 2026-04-08 201305" src="https://github.com/user-attachments/assets/f8f595e6-6d01-4ca1-b0ff-948c9ab10db5" />
-Match Result:-
-<img src="https://github.com/user-attachments/assets/a5f7dad5-151d-463c-84a5-a0a1978afdc7" width="49%" /> <img src="https://github.com/user-attachments/assets/66544bb2-9e34-46b3-bcd4-bf92e31c5694" width="49%" />
+### 🔹 Case Study 01
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/4b6a7e21-dfee-41fc-9c43-624445177a9a" width="100%" alt="Full Model UI" />
+</p>
+
+<div align="center">
+  <table>
+    <tr>
+      <th width="50%">📥 Input (Match Setup)</th>
+      <th width="50%">📈 Output (Prediction Result)</th>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/b597ace4-99f1-4522-8ea7-052931edce63" width="100%"></td>
+      <td><img src="https://github.com/user-attachments/assets/0af84fbd-2303-4c00-88b5-2d88e927aaa4" width="100%"></td>
+    </tr>
+  </table>
+</div>
+
+---
+
+### 🔹 Case Study 02
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f8f595e6-6d01-4ca1-b0ff-948c9ab10db5" width="100%" alt="Full Model UI 2" />
+</p>
+
+<div align="center">
+  <table>
+    <tr>
+      <th width="50%">📥 Input (Match Setup)</th>
+      <th width="50%">📈 Output (Prediction Result)</th>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/a5f7dad5-151d-463c-84a5-a0a1978afdc7" width="100%"></td>
+      <td><img src="https://github.com/user-attachments/assets/66544bb2-9e34-46b3-bcd4-bf92e31c5694" width="100%"></td>
+    </tr>
+  </table>
+</div>
 
 Match Result images are collected from Google.
 Model Prediction images are collected from live model deployed on streamlit.
