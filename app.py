@@ -7,13 +7,13 @@ import os
 import plotly.express as px
 
 
-st.set_page_config(page_title="T-20 Predictor", layout="centered", page_icon="")
+st.set_page_config(page_title="T-20 Predictor", layout="centered")
 
 st.markdown("""
     <style>
     /* Bigger & Bolder Title */
     .main-title {
-        font-size: 48px; /* Bigger font */
+        font-size: 48px; 
         font-weight: 900;
         color: #1E1E1E;
         text-align: center;
@@ -27,7 +27,6 @@ st.markdown("""
         border-radius: 12px !important;
     }
     
-    /* Targetting the expander text to match 'Live Match Situation' font style */
     .streamlit-expanderHeader {
         background-color: #000000 !important;
         color: white !important;
@@ -45,14 +44,13 @@ st.markdown("""
         box-shadow: 0px 2px 10px rgba(0,0,0,0.05);
     }
     
-    /* Error/Warning box styling */
     .stAlert {
         border-radius: 10px;
     }
     </style>
     """, unsafe_allow_html=True)
 
-
+# --- 2. Model Loading ---
 file_id = "15N4KPQc7Job-26w3fKxVfqHCK5y_Pq0w"
 if not os.path.exists("pipe.pkl"):
     url = f"https://drive.google.com/uc?id={file_id}"
@@ -71,11 +69,8 @@ cities = ['Colombo','Mirpur','Johannesburg','Dubai','Auckland','Cape Town',
           'Nagpur','Chandigarh','Adelaide','Bangalore','St Kitts',
           'Cardiff','Christchurch','Trinidad']
 
-
-
-
+# --- 3. Main UI ---
 st.markdown('<p class="main-title">T-20 Cricket Match Score Predictor</p>', unsafe_allow_html=True)
-
 
 with st.expander("CONFIGURE MATCH SETUP", expanded=True):
     col_a, col_b = st.columns(2)
@@ -91,20 +86,17 @@ st.markdown("---")
 if batting_team == bowling_team:
     st.error("**Teams must be different!** Please select two different teams to proceed.")
 else:
-    st.subheader(" Live Match Situation")
+    st.subheader("Live Match Situation")
     
-    s
     c1, c2 = st.columns(2)
     with c1:
         current_score = st.number_input('Current Score', min_value=0, value=50, step=1)
-        
         overs = st.number_input('Overs Done (Must be > 5)', min_value=5.0, max_value=19.5, value=10.0, step=0.1, help="The model requires at least 5 overs of data to predict.")
     with c2:
         wickets = st.number_input('Wickets Out', min_value=0, max_value=9, value=2, step=1)
-       t
         last_five = st.number_input('Last 5 Over Runs', min_value=0, value=35, step=1)
 
-   
+    # --- Logic ---
     balls_left = 120 - (int(overs) * 6 + int((overs % 1) * 10))
     wickets_left = 10 - wickets
     crr = current_score / overs if overs > 0 else 0
@@ -114,11 +106,10 @@ else:
     progress = overs / 20
     runs_possible = (balls_left/6) * crr
 
- 
     st.write(f"**Innings Progress:** {phase.upper()} Phase")
     st.progress(min(progress, 1.0))
 
-  
+    # --- Prediction ---
     input_df = pd.DataFrame({
         'batting_team':[batting_team], 'bowling_team':[bowling_team], 'city':[city],
         'current_score':[current_score], 'balls_left':[balls_left], 'wickets_left':[wickets_left],
@@ -129,15 +120,13 @@ else:
     result = pipe.predict(input_df)
     predicted_score = int(result[0])
 
-   
     st.markdown("---")
-    st.subheader(" Prediction Results")
+    st.subheader("Prediction Results")
     
     res1, res2 = st.columns(2)
     res1.metric("Predicted Total Score", predicted_score)
     res2.metric("Expected Score Range", f"{predicted_score-10} - {predicted_score+10}")
 
-    
     fig = px.bar(
         x=['Current Score', 'Predicted Total'], 
         y=[current_score, predicted_score],
@@ -147,6 +136,5 @@ else:
     )
     fig.update_layout(showlegend=False, height=350, plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)')
     st.plotly_chart(fig, use_container_width=True)
-
 
 st.markdown("<br><hr><center><small>Developed by Ashutosh Kumar(2024UCM2304) | NSUT</small></center>", unsafe_allow_html=True)
