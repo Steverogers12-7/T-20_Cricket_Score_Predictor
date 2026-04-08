@@ -87,7 +87,7 @@ The modeling process involved iterative testing of different algorithms:
       <th width="50%"></th>
     </tr>
     <tr>
-       <h2>Model Results</h2>
+       <h2>Match Results</h2>
       <td><img src="https://github.com/user-attachments/assets/a5f7dad5-151d-463c-84a5-a0a1978afdc7" width="100%"></td>
       <td><img src="https://github.com/user-attachments/assets/66544bb2-9e34-46b3-bcd4-bf92e31c5694" width="100%"></td>
     </tr>
