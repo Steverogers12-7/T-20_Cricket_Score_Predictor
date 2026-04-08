@@ -1,6 +1,6 @@
+## This project is based on machine learning,used for prediction of score of first innings of the t-20 international men cricket matches.  
+## Dataset used for the model= Cricksheet [kaggle].
 
-This project is based on machine learning,used for prediction of score of first innings of the t-20 international men cricket matches.
-Dataset used for the model= Cricksheet [kaggle].
 
 ## Live App
 https://t20scorepredictor-ekiorjgngkmcdvpencdzfi.streamlit.app/
@@ -27,20 +27,28 @@ Input features are:-
 - Wickets Fallen
 - Runs in Last 5 Overs
 
-Model calculates Runs Left,Balls Left,Wickets Left,Current Run Rate (CRR),Required Run Rate (RRR),phase,progress,aggression,runs_possible
-from input taken from user.All matches data that are used in the training of algorithm is restricted to international t-20 matches 
-and were played by men.All cities are not included ,those cities where atleast 5 matches were played are included.There are many teams 
-but included only those who play frequently.  
+## Methodology
 
-There are some features that enhanced model's understanding as for wickets in match impact on model prediction "phase" as match starts
-there are 6 overs for powerplay,7-15 middle and 16-20 overs are death overs.since this model is for first innings so there is only target setting
-for team so phase becomes important as in death overs players are tend to score more than predicted and this dynamic as many factors combine to 
-do so.others features added are-progress,aggression and runs_possible(from crr*).
+### Feature Engineering
+To enhance the model's accuracy, several custom features were engineered to capture the dynamic nature of a T-20 innings:
+* **Calculated Metrics:** The model dynamically computes `Runs Left`, `Balls Left`, `Wickets Left`, `Current Run Rate (CRR)`, and `Required Run Rate (RRR)`.
+* **Match Phases:** I divided the match into three distinct phases to better predict scoring patterns:
+    * **Powerplay:** 0–6 Overs
+    * **Middle Overs:** 7–15 Overs
+    * **Death Overs:** 16–20 Overs (Crucial for capturing the scoring acceleration typical in the final stages).
+* **Advanced Indicators:** Additional features like `Phase`, `Progress`, `Aggression`, and `Runs Possible` (extrapolated from CRR) were added to help the model understand the intent and momentum of the batting team.
 
-I tried randomforest for training but it not generalizes the model better(underfitting) so, used boosting technique of ensemble learning.
-eXtreme Gradient Boosting(xgboost) which sequentially corrects the errors of models.It genralise(learn patterns) from data and performed well and not 
-overfitting as i verified with cross validation and intact the results in model training and testing notebook.
-some latest match prediction screenshots are given below:-
+### Data Constraints & Quality
+To ensure high-quality predictions, the dataset was filtered based on the following criteria:
+* **Format:** Restricted to **International Men's T-20** matches.
+* **Venues:** Only cities that have hosted at least **5 matches** were included to ensure statistical significance.
+* **Teams:** Included only frequently playing nations to maintain a consistent baseline for team performance.
+
+### Model Selection & Generalization
+The modeling process involved iterative testing of different algorithms:
+* **Random Forest:** Initially tested, but it resulted in **Underfitting**, failing to generalize well across different match situations.
+* **XGBoost (Final Model):** I switched to **eXtreme Gradient Boosting**, a powerful ensemble learning technique. XGBoost sequentially corrects errors from previous iterations, allowing it to learn complex patterns more effectively.
+* **Validation:** The model was verified using **Cross-Validation** to ensure it generalizes well to unseen data without **Overfitting**. The consistent results between training and testing phases are documented in the project notebooks.
 
 ##  Model Predictions & Results
 
