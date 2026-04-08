@@ -31,7 +31,7 @@ cities = ['Colombo','Mirpur','Johannesburg','Dubai','Auckland','Cape Town',
 
 # 1. Sidebar for Match Setup
 st.sidebar.title(' Match Setup')
-batting_team = st.sidebar.selectbox('Batting Team', sorted(teams))
+batting_team = st.sidebar.selectbox('Batting Team', sorted(teams), index=sorted(teams).index('Australia'))
 bowling_team = st.sidebar.selectbox('Bowling Team', sorted(teams))
 city = st.sidebar.selectbox('Match City', sorted(cities))
 
