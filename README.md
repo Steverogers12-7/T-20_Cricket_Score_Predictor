@@ -94,13 +94,6 @@ Match Result images are collected from Google.
 Model Prediction images are collected from live model deployed on streamlit.
 
 
-
-
-
-
-
-
-
 All Data Extraction,preprocessing,feature extraction,model training & testing all performed in the jupyter notebook.
 
 ## Tech Stack
