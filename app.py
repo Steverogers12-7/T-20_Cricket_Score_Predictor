@@ -7,7 +7,7 @@ import os
 import plotly.express as px
 
 
-file_id = "1rWR5-gdzy0sChaPC10GTBxzHAcPtjPz8"
+file_id = "1pMc1hQeMUXbH1JIG2_NECSGNbVDV3L-4"
 
 if not os.path.exists("pipe3.pkl"):
     url = f"https://drive.google.com/uc?id={file_id}"
