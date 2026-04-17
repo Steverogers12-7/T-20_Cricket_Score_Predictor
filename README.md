@@ -36,7 +36,7 @@ To enhance the model's accuracy, several custom features were engineered to capt
     * **Powerplay:** 0–6 Overs
     * **Middle Overs:** 7–15 Overs
     * **Death Overs:** 16–20 Overs (Crucial for capturing the scoring acceleration typical in the final stages).
-* **Advanced Indicators:** Additional features like `Phase`, `Progress`, `Aggression`, and `Runs Possible` (extrapolated from CRR) were added to help the model understand the intent and momentum of the batting team.
+* **Advanced Indicators:** Additional features like `Phase`, `Aggression`, were added to help the model understand the intent and momentum of the batting team.
 
 ### Data Constraints & Quality
 To ensure high-quality predictions, the dataset was filtered based on the following criteria:
