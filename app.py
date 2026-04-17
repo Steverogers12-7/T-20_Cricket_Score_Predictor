@@ -7,13 +7,13 @@ import os
 import plotly.express as px
 
 
-file_id = "1pMc1hQeMUXbH1JIG2_NECSGNbVDV3L-4"
+file_id = "1IUCwJkErmaJGN7kIlOtDE-uXvG72AvxN"
 
-if not os.path.exists("pipe3.pkl"):
+if not os.path.exists("project.pkl"):
     url = f"https://drive.google.com/uc?id={file_id}"
-    gdown.download(url, "pipe3.pkl", quiet=False)
+    gdown.download(url, "project.pkl", quiet=False)
 
-pipe = pickle.load(open("pipe3.pkl", "rb"))
+pipe = pickle.load(open("project.pkl", "rb"))
 
 teams = ['Australia','India','Bangladesh','New Zealand','South Africa',
          'England','West Indies','Afghanistan','Pakistan','Sri Lanka']
